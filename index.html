@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Events App</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; margin: 0; padding: 0; }
+        header { background: #1a1a2e; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold; }
+        .container { padding: 20px; }
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h2 { color: #1a1a2e; border-bottom: 2px solid #e94560; padding-bottom: 10px; }
+        .btn { background: #e94560; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px; }
+        .status { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>EPIC EVENTS - Management</header>
+
+<div class="container">
+    <div class="card">
+        <h2>🎉 Evenimentul Tău</h2>
+        <p>Tip: <strong>Nuntă Premium</strong></p>
+        <p>Locație: <strong>Hotel Traian</strong></p>
+        <p>Status: <span class="status">În desfășurare (85%)</span></p>
+    </div>
+
+    <div class="card">
+        <h2>📋 Checklist Furnizori</h2>
+        <input type="checkbox" checked disabled> Catering (Selection Catering) ✅<br>
+        <input type="checkbox" checked disabled> Muzică (DJ & Cvartet) ✅<br>
+        <input type="checkbox" id="foto"> <label for="foto">Foto-Video (Confirmare Drone)</label>
+    </div>
+
+    <div class="card">
+        <h2>💰 Buget Real-Time</h2>
+        <p>Cheltuit: 8.500 EUR / Rămas: 3.500 EUR</p>
+        <button class="btn" onclick="alert('Cerere trimisă către consultatul tău Epic Events!')">Solicită Modificare</button>
+    </div>
+</div>
+
+</body>
+</html>
