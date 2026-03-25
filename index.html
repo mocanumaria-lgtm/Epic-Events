@@ -3,77 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic Events - Client Portal</title>
+    <title>Epic Events - Dashboard Premium</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --dark-blue: #1a1a2e; --accent: #e94560; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f3460; color: white; margin: 0; padding: 0; }
+        :root { --gold: #D4AF37; --dark: #0a0a1a; --glass: rgba(255, 255, 255, 0.08); }
+        body { font-family: 'Montserrat', sans-serif; background: radial-gradient(circle, #1b1b3a 0%, #050510 100%); color: white; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* Header cu Logo */
-        header { background: var(--dark-blue); padding: 25px; text-align: center; border-bottom: 4px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .logo { font-size: 32px; font-weight: 900; letter-spacing: 3px; color: var(--gold); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        .slogan { font-size: 10px; color: #ccc; letter-spacing: 1px; margin-top: 5px; }
+        /* Header cu Logo Animat */
+        header { background: var(--dark); padding: 40px 20px; text-align: center; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .logo { font-size: 35px; font-weight: 700; letter-spacing: 5px; color: var(--gold); text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); margin: 0; }
+        .tagline { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; }
 
-        .container { padding: 20px; max-width: 600px; margin: auto; }
-        
-        /* Carduri Stilate */
-        .card { background: rgba(255, 255, 255, 0.05); border-left: 5px solid var(--gold); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        h2 { color: var(--gold); font-size: 16px; text-transform: uppercase; margin-top: 0; display: flex; align-items: center; gap: 10px; }
-        
-        /* Bara de Progres Animata */
-        .progress-container { background: #333; height: 12px; border-radius: 6px; margin: 15px 0; position: relative; overflow: hidden; }
-        .progress-fill { background: linear-gradient(90deg, var(--gold), #f3e5ab); height: 100%; width: 85%; transition: width 2s ease-in-out; }
-        
-        /* Info Packets */
-        .packet-info { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 0; font-size: 14px; }
-        .status-badge { background: var(--gold); color: #000; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .container { padding: 25px; max-width: 500px; margin: auto; }
 
-        /* Butoane Actiune */
-        .btn-main { background: var(--gold); color: #000; border: none; padding: 18px; border-radius: 8px; width: 100%; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
-        .btn-main:active { transform: scale(0.98); }
+        /* Sectiuni Card */
+        .section-title { font-size: 14px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin: 30px 0 15px 5px; font-weight: 700; border-left: 3px solid var(--gold); padding-left: 10px; }
+        .card { background: var(--glass); backdrop-filter: blur(15px); border-radius: 20px; padding: 20px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
 
-        .footer { text-align: center; font-size: 10px; color: #888; margin-top: 30px; padding-bottom: 20px; }
+        /* 1. Portofoliu - Imagini */
+        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .port-img { width: 100%; height: 100px; border-radius: 12px; object-fit: cover; border: 1px solid var(--gold); filter: grayscale(30%) contrast(1.1); }
+
+        /* 2. Organigrama (Echipa) */
+        .team-member { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .avatar { width: 45px; height: 45px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; font-weight: bold; }
+        .member-info b { font-size: 14px; display: block; }
+        .member-info span { font-size: 11px; color: #aaa; }
+
+        /* 3. Status Progres */
+        .prog-bar { background: #222; height: 8px; border-radius: 4px; margin: 15px 0; overflow: hidden; }
+        .prog-fill { background: linear-gradient(90deg, #D4AF37, #f3e5ab); width: 85%; height: 100%; box-shadow: 0 0 15px var(--gold); }
+
+        /* 4. Pachete Preturi */
+        .price-tag { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
+        .price-val { color: var(--gold); font-weight: bold; }
+
+        /* Buton Contact */
+        .btn-call { background: var(--gold); color: black; border: none; padding: 20px; border-radius: 15px; width: 100%; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 20px; transition: 0.3s; box-shadow: 0 10px 20px rgba(212,175,55,0.2); }
+        .btn-call:hover { transform: translateY(-3px); background: white; }
+
+        footer { text-align: center; padding: 40px; font-size: 10px; color: #555; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">EPIC EVENTS</div>
-    <div class="slogan">EXCELENȚĂ ÎN FIECARE DETALIU</div>
+    <h1 class="logo">EPIC EVENTS</h1>
+    <div class="tagline">TEHNOLOGIE & ELEGANȚĂ</div>
 </header>
 
 <div class="container">
-    <!-- Status Eveniment -->
+    
+    <div class="section-title">✨ Portofoliu Evenimente</div>
+    <div class="card portfolio-grid">
+        <img src="https://images.unsplash.com" class="port-img" alt="Decor">
+        <img src="https://images.unsplash.com" class="port-img" alt="Sala">
+        <img src="https://images.unsplash.com" class="port-img" alt="Cocktail">
+        <img src="https://images.unsplash.com" class="port-img" alt="Ceremonie">
+    </div>
+
+    <div class="section-title">👥 Echipa Noastră (Organigramă)</div>
     <div class="card">
-        <h2>📊 MONITORIZARE PROIECT</h2>
-        <p style="font-size: 13px; margin: 5px 0;">Eveniment: <strong>Nuntă - Pachet LUXURY</strong></p>
-        <div class="progress-container"><div class="progress-fill"></div></div>
-        <div style="text-align: right; font-size: 12px; color: var(--gold);">85% Gata de Start</div>
+        <div class="team-member">
+            <div class="avatar">M.M.</div>
+            <div class="member-info"><b>Maria Mocanu</b><span>Manager General & Fondator</span></div>
+        </div>
+        <div class="team-member">
+            <div class="avatar">I.S.</div>
+            <div class="member-info"><b>Ioan S.</b><span>Manager Logistică (Hotel Traian)</span></div>
+        </div>
+        <div class="team-member">
+            <div class="avatar">A.D.</div>
+            <div class="member-info"><b>Andrei D.</b><span>Director Foto-Video (Drone Tech)</span></div>
+        </div>
     </div>
 
-    <!-- Locatie si Furnizori -->
+    <div class="section-title">📊 Status Proiect Curent</div>
     <div class="card">
-        <h2>📍 LOCAȚIE ȘI LOGISTICĂ</h2>
-        <div class="packet-info"><span>Locație:</span> <strong>Hotel Traian - Grand Ballroom</strong></div>
-        <div class="packet-info"><span>Partener Catering:</span> <strong>Selection Catering</strong></div>
-        <div class="packet-info"><span>Echipament Tech:</span> <strong>Drone & Mirrorless 4K</strong></div>
+        <p style="font-size: 12px;">Pachet Selectat: <strong>Luxury (12.000 EUR)</strong></p>
+        <div class="prog-bar"><div class="prog-fill"></div></div>
+        <p style="text-align: right; font-size: 11px; color: var(--gold);">85% Organizat (8 Săptămâni Rămase)</p>
     </div>
 
-    <!-- Checklist Strategie -->
+    <div class="section-title">💰 Oferte & Pachete</div>
     <div class="card">
-        <h2>✅ STATUS FURNIZORII</h2>
-        <div class="packet-info">Contract DJ & Cvartet <span class="status-badge">SEMNAȚI</span></div>
-        <div class="packet-info">Decoruri Personalizate <span class="status-badge">FINALIZATE</span></div>
-        <div class="packet-info">Candy Bar & Cocktail <span class="status-badge">ÎN CURS</span></div>
+        <div class="price-tag"><span>Pachet BASIC (Botez/Aniversări)</span> <span class="price-val">1.200€</span></div>
+        <div class="price-tag"><span>Pachet PREMIUM (Evenimente B2B)</span> <span class="price-val">6.000€+</span></div>
+        <div class="price-tag"><span>Pachet LUXURY (Nunta de Vis)</span> <span class="price-val">12.000€</span></div>
     </div>
 
-    <!-- Buton Contact -->
-    <button class="btn-main" onclick="alert('Solicitarea a fost trimisă echipei Epic Events! Veți fi contactat în 10 minute.')">
-        📞 CONTACTEAZĂ COORDONATORUL
-    </button>
+    <button class="btn-call" onclick="window.location.href='tel:+40700000000'">📞 DISCUTĂ CU MANAGERUL</button>
 
-    <div class="footer">
-        © 2026 Epic Events App - Versiunea 2.0 (Prototip Prezentare)
-    </div>
+    <footer>
+        Epic Events App v3.0 | Dezvoltat pentru prezentarea finală 2026
+    </footer>
 </div>
 
 </body>
